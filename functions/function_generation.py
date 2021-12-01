@@ -3,13 +3,9 @@ import math
 
 class Generation:
     def __init__(self, k1, k2, k3, lower_lim, upper_lim, limit_step, used_func):
-        self.upper_limit = upper_lim
-        self.k1 = k1
-        self.k2 = k2
-        self.k3 = k3
-        self.lower_lim = lower_lim
+        self.k1, self.k2, self.k3 = k1, k2, k3
+        self.lower_lim, self.upper_lim = lower_lim, upper_lim
         self.limit_step = limit_step
-        self.upper_lim = upper_lim
         self.used_func = used_func
 
     def __get_gen_value(self, angle):
@@ -24,11 +20,9 @@ class Generation:
 
         return math.degrees(gen_value).__round__(3)
 
+    # Just perform comprehension for the rest
     def __get_input_angles(self):
-        value_range = []
-        for i in range(self.lower_lim, self.upper_limit + self.limit_step):
-            if i % self.limit_step == 0:
-                value_range.append(i)
+        value_range = [i for i in range(self.lower_lim, self.upper_lim+self.limit_step) if i % self.limit_step == 0]
         return value_range
 
     def __get_required_output(self):
